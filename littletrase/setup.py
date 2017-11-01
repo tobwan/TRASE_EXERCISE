@@ -1,7 +1,9 @@
 import os
 
 BASE_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
-RAW_DATA_LOC = "trasedata"
+XL_DATA_LOC = 'trasedata'
+XL_LOOKUP_TABLES = 'trase-tbl-data.xlsx'
+
 CONN_STRING = "dbname='littletracedb' host='localhost' port='5432' user='traceworker' password='password123'"
 
 # Some simple lcgging configuration.
@@ -12,7 +14,7 @@ LOGGING = {
         "simple": {
             "class": "logging.Formatter",
             "datefmt": "%I:%M:%S",
-            "format": "%(levelname)-8s;%(name)-15s;%(message)s"
+            "format": "%(levelname)s:\t%(name)s: %(message)s"
         },
         "verbose": {
             "class": "logging.Formatter",
@@ -28,7 +30,7 @@ LOGGING = {
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
-            "formatter": "multiline", # Choose your console formatter here
+            "formatter": "simple", # Choose your console formatter here
             "stream": "ext://sys.stdout"
         }
     },

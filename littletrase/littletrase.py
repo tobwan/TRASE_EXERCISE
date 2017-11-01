@@ -8,12 +8,18 @@ import logging
 import logging.config
 import os
 import setup
-
+from data.xlparser import XLParser
 
 def main():
 
     logging.config.dictConfig(setup.LOGGING)
-    logger = logging.getLogger('root')
+    logger = logging.getLogger(__name__)
+
+    logger.info("Begin littletrase")
+
+    xlparser = XLParser()
+    xlparser.load_lookup_tables()
+
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     print(dir_path)

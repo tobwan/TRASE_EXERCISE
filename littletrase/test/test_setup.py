@@ -3,6 +3,7 @@ A simple set of tests for basic functional setup and use
 
 
 NOTE: Make sure that traceworker has privileges to login!
+TODO: Test logging not implemented
 """
 from unittest import TestCase
 import logging
@@ -13,7 +14,6 @@ import setup
 from data.dbaccessor import DBAccessor
 import xlrd
 import os
-
 
 class TestLittleTraseSetup(TestCase):
 
@@ -44,16 +44,25 @@ class TestDBAccess(TestCase):
             result = db.query(SQL)
             self.assertEqual(result,[(1,)])
         except:
-            print("Check connection string: " + setup.CONN_STRING)
+            print("TestDBAccess FAILS: Check connection string: " + setup.CONN_STRING)
             raise
 
 class TestDBRawDataFile(TestCase):
 
-    def test_excel_access(self):
+    def test_xl_access(self):
 
-        dpath = os.path.join(setup.BASE_DIRECTORY,'trasedata')
-        tdata = os.path.join(dpath,'trase-tbl-data.xlsx')
-        xlwb = xlrd.open_workbook(tdata)
+        try:
+            xlpath = os.path.join(setup.BASE_DIRECTORY,setup.XL_DATA_LOC)
+            datapath = os.path.join(xlpath,setup.XL_LOOKUP_TABLES)
+            xlwb = xlrd.open_workbook(datapath)
+        except:
+            print("TestDBRawDataFile FAILS: Check paths: ")
+            print("excel data location: "+ setup.XL_DATA_LOC)
+            print("excel data location: " + setup.XL_LOOKUP_TABLES)
+            print("Also make sure the library 'xlrd' is correctly installed")
+            raise
+
+
         xls1 = xlwb.sheet_by_name('tbl_location_type')
 
         # print(xls1)
