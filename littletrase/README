@@ -6,6 +6,11 @@ The various tools I've used here are pgModeler for db design, virtualenv, pgAdmi
 
 Within the program I've used various tools (such as virtualenv) as per the requirements.txt
 
+Psycopg2 for working with postgres in sql
+Testfixtures to test logging
+Pandas for working with the csv files (chosen not to use this for queries, rather psycopg)
+xlrd for reading the excel file
+
 
 
 1. GETTING IT RUNNING

@@ -1,2 +1,4 @@
 testfixtures
 psycopg2
+pandas
+xlrd

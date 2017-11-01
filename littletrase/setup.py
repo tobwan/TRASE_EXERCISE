@@ -1,6 +1,7 @@
 import os
 
 BASE_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+RAW_DATA_LOC = "trasedata"
 CONN_STRING = "dbname='littletracedb' host='localhost' port='5432' user='traceworker' password='password123'"
 
 # Some simple lcgging configuration.

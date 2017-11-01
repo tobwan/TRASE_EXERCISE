@@ -1,0 +1,6 @@
+location_type_id,name
+1,Country
+2,State
+3,Municipality
+4,City
+5,Unknown
