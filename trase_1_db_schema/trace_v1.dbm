@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1-alpha" last-position="0,764" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<role name="traceworker"
+      password="password123">
+</role>
+
+<database name="littletracedb">
+	<role name="traceworker"/>
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="tbl_municipality">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[Locations of type municipality lookup table.]]></comment>
+	<position x="120" y="940"/>
+	<column name="municipality_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="state">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="municipality_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_municipality_pk" type="pk-constr" table="public.tbl_municipality">
+		<columns names="municipality_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_node">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1320" y="200"/>
+	<column name="node_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="node_type" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="node_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_node_pk" type="pk-constr" table="public.tbl_node">
+		<columns names="node_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_state">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[Locations of type state lookup table.]]></comment>
+	<position x="160" y="760"/>
+	<column name="state_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="country" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="state_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_state_pk" type="pk-constr" table="public.tbl_state">
+		<columns names="state_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_logistics_hub">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="700" y="1380"/>
+	<column name="logistics_hub_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="tbl_logistics_hub_pk" type="pk-constr" table="public.tbl_logistics_hub">
+		<columns names="logistics_hub_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_exporter">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="2240" y="1180"/>
+	<column name="exporter_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="exporter_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_exporter_pk" type="pk-constr" table="public.tbl_exporter">
+		<columns names="exporter_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_port">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1480" y="1180"/>
+	<column name="port_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="city" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="port_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_port_pk" type="pk-constr" table="public.tbl_port">
+		<columns names="port_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_importer">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1840" y="1180"/>
+	<column name="importer_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="importer_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_importer_pk" type="pk-constr" table="public.tbl_importer">
+		<columns names="importer_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_country">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[Locations of type country lookup table.]]></comment>
+	<position x="140" y="600"/>
+	<column name="country_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="country_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_country_pk" type="pk-constr" table="public.tbl_country">
+		<columns names="country_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_supply_chain">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1600" y="1440"/>
+</table>
+
+<table name="tbl_link">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1100" y="1460"/>
+	<column name="link_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="node_from" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="node_to" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="link_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_link_pk" type="pk-constr" table="public.tbl_link">
+		<columns names="link_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_location">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="800" y="400"/>
+	<column name="location_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="location_type">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="location_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="location_common_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_location_pk" type="pk-constr" table="public.tbl_location">
+		<columns names="location_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_location_type">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[Locations are typed in this lookup table.]]></comment>
+	<position x="320" y="360"/>
+	<column name="location_type_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="tbl_location_type_pk" type="pk-constr" table="public.tbl_location_type">
+		<columns names="location_type_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_trade_entity">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[These are the produce or traded entities.]]></comment>
+	<position x="300" y="1800"/>
+	<column name="trade_entity_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="trade_entity_type_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="trade_entity_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<constraint name="tbl_trade_entity_pk" type="pk-constr" table="public.tbl_trade_entity">
+		<columns names="trade_entity_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_biome_location">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="140" y="1240"/>
+	<column name="biome" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="location" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="tbl_biome_location_pk" type="pk-constr" table="public.tbl_biome_location">
+		<columns names="biome,location" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_biome">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="700" y="1240"/>
+	<column name="biome_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="biome_data">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="tbl_biome_pk" type="pk-constr" table="public.tbl_biome">
+		<columns names="biome_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_logistics_hub_location">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="40" y="1380"/>
+	<column name="logistics_hub" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="location" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="tbl_logistics_hub_location_pk" type="pk-constr" table="public.tbl_logistics_hub_location">
+		<columns names="logistics_hub,location" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_node_type">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[Directional types of node lookup table such as from and to.]]></comment>
+	<position x="860" y="200"/>
+	<column name="node_type_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="ntype" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="ntposition" not-null="true">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[The position is an integer for constraining a link to be suitably connected.]]></comment>
+	</column>
+	<constraint name="tbl_node_type_pk" type="pk-constr" table="public.tbl_node_type">
+		<columns names="node_type_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_trade_entity_type">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="100" y="1620"/>
+	<column name="trade_entity_type_id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Trade entities are typed in this lookup table.]]></comment>
+	</column>
+	<column name="trade_entity_type" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<constraint name="tbl_entity_type_pk" type="pk-constr" table="public.tbl_trade_entity_type">
+		<columns names="trade_entity_type_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<function name="isValidLink"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="sql" sql-disabled="true"/>
+	<return-type>
+	<type name="smallint" length="0"/>
+	</return-type>
+	<parameter name="ntpos1" default-value="-1">
+		<type name="smallint" length="0"/>
+	</parameter>
+	<parameter name="ntpos2" default-value="-1">
+		<type name="smallint" length="0"/>
+	</parameter>
+	<definition><![CDATA[if abs(ntpos1-ntpos2) == 1
+	return True
+return False]]></definition>
+</function>
+
+<textbox name="function_is_valid_link_notes" font-size="9">
+	<position x="980" y="60"/>
+	<comment><![CDATA[Need to create a user function that ensures the link is between two nodes that are next to each other using the tbl_node.node_type.nposition (abs(pos1-pos2) == 1).]]></comment>
+</textbox>
+
+<table name="tbl_company">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[The exporters and importers.]]></comment>
+	<position x="2000" y="800"/>
+	<column name="company_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="company_type" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="company_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<constraint name="tbl_company_pk" type="pk-constr" table="public.tbl_company">
+		<columns names="company_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_city">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="140" y="1100"/>
+	<column name="city_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="municipality" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="city_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<constraint name="tbl_city_pk" type="pk-constr" table="public.tbl_city">
+		<columns names="city_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_company_type">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="2060" y="660"/>
+	<column name="company_type_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="company_type" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<constraint name="tbl_company_type_pk" type="pk-constr" table="public.tbl_company_type">
+		<columns names="company_type_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_country_node">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="880" y="600"/>
+	<column name="country">
+		<type name="integer" length="0"/>
+	</column>
+</table>
+
+<relationship name="tbl_country_node_inherits_tbl_node" type="relgen"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#83af1f"
+	 src-table="public.tbl_country_node"
+	 dst-table="public.tbl_node"/>
+
+<table name="tbl_state_node">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1040" y="760"/>
+	<column name="state" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+</table>
+
+<relationship name="tbl_state_node_inherits_tbl_node" type="relgen"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#83af1f"
+	 src-table="public.tbl_state_node"
+	 dst-table="public.tbl_node"/>
+
+<table name="tbl_biome_node">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1100" y="940"/>
+	<column name="biome" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+</table>
+
+<relationship name="tbl_biome_node_inherits_tbl_node" type="relgen"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#83af1f"
+	 src-table="public.tbl_biome_node"
+	 dst-table="public.tbl_node"/>
+
+<table name="tbl_logistics_hub_node">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1540" y="860"/>
+	<column name="logistics_hub" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+</table>
+
+<relationship name="tbl_logistics_hub_node_inherits_tbl_node" type="relgen"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#83af1f"
+	 src-table="public.tbl_logistics_hub_node"
+	 dst-table="public.tbl_node"/>
+
+<table name="tbl_company_node">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1600" y="460"/>
+	<column name="company" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="tbl_company_node_pk" type="pk-constr" table="public.tbl_company_node">
+		<columns names="company" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tbl_company_node_inherits_tbl_node" type="relgen"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#83af1f"
+	 src-table="public.tbl_company_node"
+	 dst-table="public.tbl_node"/>
+
+<table name="tbl_trade_detail">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[Trade detail here assumes no potential trade links are in the db. Ie, must have one link.]]></comment>
+	<position x="1080" y="1780"/>
+	<column name="trade_detail_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="trade_entity" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="year" not-null="true">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[Just using smallint type for year only with time scale.]]></comment>
+	</column>
+	<column name="measurement" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="trade_detail_data">
+		<type name="text" length="0"/>
+	</column>
+	<column name="link" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="unique_link" type="uq-constr" table="public.tbl_trade_detail">
+		<columns names="link" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="tbl_trade_detail_pk" type="pk-constr" table="public.tbl_trade_detail">
+		<columns names="trade_detail_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_measurement_type">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="2000" y="1520"/>
+	<column name="measurement_type_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="measurement_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="unit" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="tbl_measurement_type_pk" type="pk-constr" table="public.tbl_measurement_type">
+		<columns names="measurement_type_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_measurement">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<position x="1660" y="1720"/>
+	<column name="measurement_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="measuremet_type" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="amount" not-null="true">
+		<type name="numeric" length="20" precision="10"/>
+	</column>
+	<column name="measurement_data">
+		<type name="text" length="0"/>
+		<comment><![CDATA[Measurements could be of various types with various fields of measure. E.g., Statistics, Volume etc.]]></comment>
+	</column>
+	<constraint name="tbl_measurement_pk" type="pk-constr" table="public.tbl_measurement">
+		<columns names="measurement_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tbl_unit">
+	<schema name="public"/>
+	<role name="traceworker"/>
+	<comment><![CDATA[Lookup table for measurement type units.]]></comment>
+	<position x="2100" y="1880"/>
+	<column name="unit_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="unit_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="abbreviation">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="tbl_unit_pk" type="pk-constr" table="public.tbl_unit">
+		<columns names="unit_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="valid_supply_chain_checker" font-size="9">
+	<position x="940" y="1620"/>
+	<comment><![CDATA[Make sure that the links in a supply chain are rationale. Ie, that a soya chain doesn't mix with another kind of chain.]]></comment>
+</textbox>
+
+<textbox name="json" font-size="9">
+	<position x="1120" y="1720"/>
+	<comment><![CDATA[Should this have a json associated with it?]]></comment>
+</textbox>
+
+<constraint name="tbl_municipality_location_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.tbl_location" table="public.tbl_municipality">
+	<columns names="municipality_id" ref-type="src-columns"/>
+	<columns names="location_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_municipality_state_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_state" table="public.tbl_municipality">
+	<columns names="state" ref-type="src-columns"/>
+	<columns names="state_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_state_location_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.tbl_location" table="public.tbl_state">
+	<columns names="state_id" ref-type="src-columns"/>
+	<columns names="location_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_state_country_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_country" table="public.tbl_state">
+	<columns names="country" ref-type="src-columns"/>
+	<columns names="country_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_exporter_company_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_company" table="public.tbl_exporter">
+	<columns names="exporter_id" ref-type="src-columns"/>
+	<columns names="company_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_post_city_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_city" table="public.tbl_port">
+	<columns names="city" ref-type="src-columns"/>
+	<columns names="city_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_port_company_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_company" table="public.tbl_port">
+	<columns names="port_id" ref-type="src-columns"/>
+	<columns names="company_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_importer_company_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_company" table="public.tbl_importer">
+	<columns names="importer_id" ref-type="src-columns"/>
+	<columns names="company_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_country_location_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="CASCADE" ref-table="public.tbl_location" table="public.tbl_country">
+	<columns names="country_id" ref-type="src-columns"/>
+	<columns names="location_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_link_node_id_to_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_node" table="public.tbl_link">
+	<columns names="node_to" ref-type="src-columns"/>
+	<columns names="node_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_link_node_id_from_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_node" table="public.tbl_link">
+	<columns names="node_from" ref-type="src-columns"/>
+	<columns names="node_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_location_location_type_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_location_type" table="public.tbl_location">
+	<columns names="location_type" ref-type="src-columns"/>
+	<columns names="location_type_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_entity_entity_type_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_trade_entity_type" table="public.tbl_trade_entity">
+	<columns names="trade_entity_type_id" ref-type="src-columns"/>
+	<columns names="trade_entity_type_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_biome_location" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_biome" table="public.tbl_biome_location">
+	<columns names="biome" ref-type="src-columns"/>
+	<columns names="biome_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_location_location_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_location" table="public.tbl_biome_location">
+	<columns names="location" ref-type="src-columns"/>
+	<columns names="location_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_logistics_hub_location_location_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_location" table="public.tbl_logistics_hub_location">
+	<columns names="location" ref-type="src-columns"/>
+	<columns names="location_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_logistics_hub_location_logistics_hub_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_logistics_hub" table="public.tbl_logistics_hub_location">
+	<columns names="logistics_hub" ref-type="src-columns"/>
+	<columns names="logistics_hub_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_node_node_type_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_node_type" table="public.tbl_node">
+	<columns names="node_type" ref-type="src-columns"/>
+	<columns names="node_type_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_company_company_type_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_company_type" table="public.tbl_company">
+	<columns names="company_type" ref-type="src-columns"/>
+	<columns names="company_type_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_city_municipality_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_municipality" table="public.tbl_city">
+	<columns names="municipality" ref-type="src-columns"/>
+	<columns names="municipality_id" ref-type="dst-columns"/>
+		<comment><![CDATA[Each city is in one municipaity.]]></comment>
+</constraint>
+
+<constraint name="tbl_country_node_country_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_country" table="public.tbl_country_node">
+	<columns names="country" ref-type="src-columns"/>
+	<columns names="country_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_state_node" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_state" table="public.tbl_state_node">
+	<columns names="state" ref-type="src-columns"/>
+	<columns names="state_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_biome_node_biome_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_biome" table="public.tbl_biome_node">
+	<columns names="biome" ref-type="src-columns"/>
+	<columns names="biome_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_logistics_hub_logistics_hub_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_logistics_hub" table="public.tbl_logistics_hub_node">
+	<columns names="logistics_hub" ref-type="src-columns"/>
+	<columns names="logistics_hub_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_company_node_company_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_company" table="public.tbl_company_node">
+	<columns names="company" ref-type="src-columns"/>
+	<columns names="company_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_trade_detail_link_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_link" table="public.tbl_trade_detail">
+	<columns names="link" ref-type="src-columns"/>
+	<columns names="link_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_trade_detail_trade_entity_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_trade_entity" table="public.tbl_trade_detail">
+	<columns names="trade_entity" ref-type="src-columns"/>
+	<columns names="trade_entity_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_trade_detail_measurement_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_measurement" table="public.tbl_trade_detail">
+	<columns names="measurement" ref-type="src-columns"/>
+	<columns names="measurement_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_measurement_type_unit_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_unit" table="public.tbl_measurement_type">
+	<columns names="unit" ref-type="src-columns"/>
+	<columns names="unit_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tbl_measurement_measurement_type_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tbl_measurement_type" table="public.tbl_measurement">
+	<columns names="measuremet_type" ref-type="src-columns"/>
+	<columns names="measurement_type_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_tbl_location_tbl_location_type" type="relfk"
+	 src-table="public.tbl_location"
+	 dst-table="public.tbl_location_type"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="760.5" y="388.7"/>
+	</line>
+</relationship>
+
+<relationship name="rel_tbl_country_tbl_location" type="relfk"
+	 src-table="public.tbl_country"
+	 dst-table="public.tbl_location"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_municipality_tbl_location" type="relfk"
+	 src-table="public.tbl_municipality"
+	 dst-table="public.tbl_location"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_state_tbl_location" type="relfk"
+	 src-table="public.tbl_state"
+	 dst-table="public.tbl_location"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_state_tbl_country" type="relfk"
+	 src-table="public.tbl_state"
+	 dst-table="public.tbl_country"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="454.38" y="802.7"/>
+	<position x="454.38" y="628.7"/>
+	</line>
+</relationship>
+
+<relationship name="rel_tbl_municipality_tbl_state" type="relfk"
+	 src-table="public.tbl_municipality"
+	 dst-table="public.tbl_state"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="464.38" y="982.7"/>
+	<position x="464.38" y="788.7"/>
+	</line>
+</relationship>
+
+<relationship name="rel_tbl_biome_location_tbl_biome" type="relfk"
+	 src-table="public.tbl_biome_location"
+	 dst-table="public.tbl_biome"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_biome_location_tbl_location" type="relfk"
+	 src-table="public.tbl_biome_location"
+	 dst-table="public.tbl_location"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_logistics_hub_location_tbl_location" type="relfk"
+	 src-table="public.tbl_logistics_hub_location"
+	 dst-table="public.tbl_location"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_logistics_hub_location_tbl_logistics_hub" type="relfk"
+	 src-table="public.tbl_logistics_hub_location"
+	 dst-table="public.tbl_logistics_hub"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_node_tbl_node_type" type="relfk"
+	 src-table="public.tbl_node"
+	 dst-table="public.tbl_node_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_entity_tbl_entity_type" type="relfk"
+	 src-table="public.tbl_trade_entity"
+	 dst-table="public.tbl_trade_entity_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_link_tbl_node" type="relfk"
+	 src-table="public.tbl_link"
+	 dst-table="public.tbl_node"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_city_tbl_municipality" type="relfk"
+	 src-table="public.tbl_city"
+	 dst-table="public.tbl_municipality"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="110.5" y="1142.7"/>
+	<position x="110.5" y="968.7"/>
+	</line>
+</relationship>
+
+<relationship name="rel_tbl_company_tbl_company_type" type="relfk"
+	 src-table="public.tbl_company"
+	 dst-table="public.tbl_company_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_port_tbl_city" type="relfk"
+	 src-table="public.tbl_port"
+	 dst-table="public.tbl_city"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_country_node_tbl_country" type="relfk"
+	 src-table="public.tbl_country_node"
+	 dst-table="public.tbl_country"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_state_node_tbl_state" type="relfk"
+	 src-table="public.tbl_state_node"
+	 dst-table="public.tbl_state"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_biome_node_tbl_biome" type="relfk"
+	 src-table="public.tbl_biome_node"
+	 dst-table="public.tbl_biome"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_logistics_hub_node_tbl_logistics_hub" type="relfk"
+	 src-table="public.tbl_logistics_hub_node"
+	 dst-table="public.tbl_logistics_hub"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_port_tbl_company" type="relfk"
+	 src-table="public.tbl_port"
+	 dst-table="public.tbl_company"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_exporter_tbl_company" type="relfk"
+	 src-table="public.tbl_exporter"
+	 dst-table="public.tbl_company"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_importer_tbl_company" type="relfk"
+	 src-table="public.tbl_importer"
+	 dst-table="public.tbl_company"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_company_node_tbl_company" type="relfk"
+	 src-table="public.tbl_company_node"
+	 dst-table="public.tbl_company"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_trade_detail_tbl_link" type="relfk"
+	 src-table="public.tbl_trade_detail"
+	 dst-table="public.tbl_link"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_trade_detail_tbl_trade_entity" type="relfk"
+	 src-table="public.tbl_trade_detail"
+	 dst-table="public.tbl_trade_entity"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_measurement_tbl_measurement_type" type="relfk"
+	 src-table="public.tbl_measurement"
+	 dst-table="public.tbl_measurement_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_measurement_type_tbl_unit" type="relfk"
+	 src-table="public.tbl_measurement_type"
+	 dst-table="public.tbl_unit"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tbl_trade_detail_tbl_measurement" type="relfk"
+	 src-table="public.tbl_trade_detail"
+	 dst-table="public.tbl_measurement"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

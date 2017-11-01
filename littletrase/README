@@ -1,0 +1,85 @@
+WELCOME TO LITTLETRASE - You'll never know it was here
+
+INTRO
+
+The various tools I've used here are pgModeler for db design, virtualenv, pgAdmin for working with the db and pycharm as an ide.
+
+Within the program I've used various tools (such as virtualenv) as per the requirements.txt
+
+Psycopg2 for working with postgres in sql
+Testfixtures to test logging
+Pandas for working with the csv files (chosen not to use this for queries, rather psycopg)
+xlrd for reading the excel file
+
+
+
+1. GETTING IT RUNNING
+
+All of the code and related files can be found on git.com
+
+The program runs inside of a virtual environment (venv-sei)  which is included in the git repository.
+
+To get started with the database you will need to load the littletracedb database. To do this first run the initializedb.py file.
+To clear the database run the resetdb.py
+
+The initialize script will fill the lookup tables and add the required fields as per the exercise.
+All the initial data is kept in csv files in the trasedata folder. This is collated in the excel files in the trase_1_rawdata folder.
+
+The db schema is inside the trase_1_db_schema folder as a pgModeller file - A database modeling software.
+
+Once the data is loaded the main program to run is in littletrase.py
+
+
+
+2. UNDERSTANDING THE DATABASE
+
+PLEASE CONSIDER : THIS IS A ROUGH FIRST SKETCH OF THE DB DESIGN
+
+Where I can I have used lookup tables for static data such as types.
+
+LOCATION DATA
+
+Each location type has its own table, these are relatively small datasets. Basic location tables inherit by reference to the tbl_location.
+Other than basic there are the collection location tables (for biome and logistics hub) these can be made of multiple locations and as such have
+a foreign key collection to make the primary key.
+
+COMPANIES
+
+A company is the superstructure for a port, exporter or importer. Each company type has its own table.
+
+NODES
+
+Referring to the website, I've used the idea of a NODE to express the ends of a LINK. The nodes then correlate to the drop-down choices for data representation.
+
+The link is an object made of two NODES (if time I will create a user defined function triggered on insert that validates that nodes can be linked).
+
+There is a collection of node subclasses that are related to companies and locations: These then make the link objects.
+In this way, every link in all of the supply chain possibilities represent all possible line objects and each link is easily related to the kind of node.
+
+Using inheritance here for subclassing.
+
+TRADE ENTITIES
+
+The trade entities are typed (eg, legume, wood, cattle, ...) and are described by the tbl_trade_entity.
+
+MEASUREMENT
+
+I've expanded the idea of measurement to allow for scalable or changeable types of measurement.
+The idea of this is to easily accomodate different measurement techniques such as mathematical models as well as simple types like volume, cost etc.
+
+TRADE DETAIL
+
+Each trade entity detail relates to exactly one link. Through link and trade entity detail all links with meaningful measurements exist.
+
+FUTURE IDEAS
+
+I would then consider creating update views for creating specific quick access datasets that are callable from the main program.
+
+
+
+3. TESTING/LOGGING
+
+Just a very quick start to the test-driven approach and to a logging schedule. Simple logging, just to the console and some basic tests.
+I believe in thorough testing so that when the project grows, complexity is reduced.
+
+I want to focus you to my belief that logging and testing are essential parts of development for activity and bug control.
